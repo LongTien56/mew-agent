@@ -1,5 +1,8 @@
 package com.example.mewagent;
 
+import com.example.mewagent.config.AppModule; // Make sure you have created this file
+import com.google.inject.Guice;
+import com.google.inject.Injector;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -10,39 +13,29 @@ import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.net.URL;
-import com.example.mewagent.config.AppModule;
-import com.google.inject.Guice;
-import com.google.inject.Injector;
-import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
-/**
- * Main application class for Mew Agent.
- * This class extends JavaFX Application and serves as the entry point for the GUI application.
- */
+
 public class MainApp extends Application {
-    
+
     private static final Logger logger = LoggerFactory.getLogger(MainApp.class);
     private static final String WINDOW_TITLE = "Mew Agent";
     private static final double DEFAULT_WIDTH = 800;
     private static final double DEFAULT_HEIGHT = 600;
+
     private Injector injector;
 
     @Override
-    public void init() throw Exception {
+    public void init() throws Exception {
         super.init();
-        this.injector = Guice.createInjector(AppModule());
+        // Create the Guice injector with our application's configuration module.
+        // This is the "factory" that will build our objects.
+        this.injector = Guice.createInjector(new AppModule());
     }
-
 
     @Override
     public void start(Stage primaryStage) {
         try {
             logger.info("Starting Mew Agent application");
-            
-            // Load FXML file
+
             URL fxmlLocation = getClass().getResource("/com/example/mewagent/MainView.fxml");
             if (fxmlLocation == null) {
                 logger.error("Cannot find MainView.fxml file. Make sure it's in src/main/resources/com/example/mewagent/");
@@ -51,30 +44,25 @@ public class MainApp extends Application {
             }
 
             FXMLLoader loader = new FXMLLoader(fxmlLocation);
+
             loader.setControllerFactory(injector::getInstance);
+
             Parent root = loader.load();
-            
-            // Create and configure scene
+
             Scene scene = new Scene(root, DEFAULT_WIDTH, DEFAULT_HEIGHT);
-            
-            // Configure primary stage
+
             primaryStage.setTitle(WINDOW_TITLE);
             primaryStage.setScene(scene);
             primaryStage.setMinWidth(600);
             primaryStage.setMinHeight(400);
-            
-            // Set application icon if available
-            // primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/icon.png")));
-            
-            // Handle close request
+
             primaryStage.setOnCloseRequest(event -> {
                 logger.info("Application closing");
-                // Add any cleanup code here
             });
-            
+
             primaryStage.show();
             logger.info("Application started successfully");
-            
+
         } catch (IOException e) {
             logger.error("Failed to load FXML file", e);
             showErrorAndExit("Failed to load application interface");

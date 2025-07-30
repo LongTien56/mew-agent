@@ -9,12 +9,13 @@ import com.google.inject.Inject;
 public class AgentService {
 
     private final ITaskExecutionService taskExecutionService;
+    private final IAgentService agentService;
 
     @Inject
-    public AgentService(ITaskExecutionService taskExecutionService){
+    public AgentService(ITaskExecutionService taskExecutionService, IAgentService agentService){
         this.taskExecutionService =  taskExecutionService;
+        this.agentService = agentService;
     }
-
 
     @Override
     public String executeCommand(String command) {
