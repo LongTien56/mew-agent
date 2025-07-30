@@ -2,6 +2,7 @@ package com.example.mewagent.service;
 
 import com.example.mewagent.service.interfaces.IAgentService;
 import com.example.mewagent.service.interfaces.ITaskExecutionService;
+import com.example.mewagent.repositories.ITaskRepository;
 import com.google.inject.Inject;
 
 import java.util.HashMap;
@@ -14,10 +15,12 @@ public class AgentService implements IAgentService {
 
     private final ITaskExecutionService taskExecutionService;
     private static final Pattern PURCHASE_COMMAND_PATTERN = Pattern.compile("buy (.+) from (.+)");
+    private final ITaskRepository taskRepository;
 
     @Inject
-    public AgentService(ITaskExecutionService taskExecutionService) {
+    public AgentService(ITaskExecutionService taskExecutionService, ITaskRepository taskRepository) {
         this.taskExecutionService = taskExecutionService;
+        this.taskRepository = taskRepository;
     }
 
     @Override

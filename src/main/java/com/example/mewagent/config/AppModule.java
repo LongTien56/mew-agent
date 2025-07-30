@@ -5,6 +5,10 @@ import com.example.mewagent.service.TaskExecutionService;
 import com.example.mewagent.service.interfaces.IAgentService;
 import com.example.mewagent.service.interfaces.ITaskExecutionService;
 import com.google.inject.AbstractModule;
+import com.example.mewagent.repositories.ITaskRepository;
+import com.example.mewagent.repositories.SQLiteTaskRepository;
+import com.example.mewagent.repositories.WebsitePatternRepository;
+import com.example.mewagent.repositories.IWebsitePatternRepository;
 
 public class AppModule extends AbstractModule {
     @Override
@@ -12,5 +16,7 @@ public class AppModule extends AbstractModule {
         bind(IAgentService.class).to(AgentService.class);
 
         bind(ITaskExecutionService.class).to(TaskExecutionService.class);
+        bind(ITaskRepository.class).to(SQLiteTaskRepository.class);
+        bind(IWebsitePatternRepository.class).to(WebsitePatternRepository.class);
     }
 }
