@@ -1,16 +1,22 @@
 package com.example.mewagent.service;
-
+import com.example.mewagent.service.interfaces.IAgentService;
+import com.example.mewagent.service.interfaces.ITaskExecutionService;
+import com.google.inject.Inject;
 /**
  * Simple agent service for basic command processing.
  * This provides a simplified interface for user commands.
  */
 public class AgentService {
-    
-    /**
-     * Execute a user command and return a response.
-     * @param command the command string from user input
-     * @return response message
-     */
+
+    private final ITaskExecutionService taskExecutionService;
+
+    @Inject
+    public AgentService(ITaskExecutionService taskExecutionService){
+        this.taskExecutionService =  taskExecutionService;
+    }
+
+
+    @Override
     public String executeCommand(String command) {
         if (command == null || command.trim().isEmpty()) {
             return "Please enter a command.";
@@ -31,4 +37,13 @@ public class AgentService {
                 return "Unknown command: " + command + ". Type 'help' for available commands.";
         }
     }
+    @Override
+    public boolean isReady(){
+        return true;
+    }
+    @Override
+    public String getStatus(){
+        return "AI agent is ready";
+    }
+
 }

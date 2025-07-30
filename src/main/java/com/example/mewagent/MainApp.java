@@ -10,7 +10,14 @@ import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.net.URL;
-
+import com.example.mewagent.config.AppModule;
+import com.google.inject.Guice;
+import com.google.inject.Injector;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 /**
  * Main application class for Mew Agent.
  * This class extends JavaFX Application and serves as the entry point for the GUI application.
@@ -21,6 +28,14 @@ public class MainApp extends Application {
     private static final String WINDOW_TITLE = "Mew Agent";
     private static final double DEFAULT_WIDTH = 800;
     private static final double DEFAULT_HEIGHT = 600;
+    private Injector injector;
+
+    @Override
+    public void init() throw Exception {
+        super.init();
+        this.injector = Guice.createInjector(AppModule());
+    }
+
 
     @Override
     public void start(Stage primaryStage) {
@@ -36,6 +51,7 @@ public class MainApp extends Application {
             }
 
             FXMLLoader loader = new FXMLLoader(fxmlLocation);
+            loader.setControllerFactory(injector::getInstance);
             Parent root = loader.load();
             
             // Create and configure scene
@@ -68,21 +84,11 @@ public class MainApp extends Application {
         }
     }
 
-    /**
-     * Shows an error message and exits the application.
-     * 
-     * @param message The error message to display
-     */
     private void showErrorAndExit(String message) {
         System.err.println("Error: " + message);
         System.exit(1);
     }
 
-    /**
-     * Application entry point.
-     * 
-     * @param args Command line arguments
-     */
     public static void main(String[] args) {
         logger.info("Launching Mew Agent with args: {}", java.util.Arrays.toString(args));
         launch(args);

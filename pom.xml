@@ -27,6 +27,11 @@
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>com.google.inject</groupId>
+            <artifactId>guice</artifactId>
+            <version>5.1.0</version>
+        </dependency>
         <!-- JavaFX Dependencies -->
         <dependency>
             <groupId>org.openjfx</groupId>
