@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<!--
+  Main view FXML file defining the user interface structure.
+  VBox is a layout container that arranges child components vertically.
+  fx:controller points to the Java class that will control the logic for this interface.
+-->
+<VBox alignment="CENTER" spacing="10" style="-fx-padding: 10;"
+      xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.example.mewagent.controller.MainController">
+
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+    </padding>
+
+    <!--
+      fx:id="logArea" is a unique identifier.
+      We will use this identifier in the MainController class to reference this text area.
+    -->
+    <TextArea fx:id="logArea" editable="false" promptText="Assistant logs will appear here..." VBox.vgrow="ALWAYS"/>
+
+    <!-- HBox is a layout container that arranges child components horizontally. -->
+    <HBox alignment="CENTER" spacing="10">
+        <TextField fx:id="commandField" promptText="Enter your command here..." HBox.hgrow="ALWAYS"/>
+        
+        <!--
+          onAction="#handleExecuteCommand" specifies that when this button is clicked,
+          the method named handleExecuteCommand in MainController will be called.
+        -->
+        <Button onAction="#handleExecuteCommand" text="Execute"/>
+    </HBox>
+</VBox>
+
