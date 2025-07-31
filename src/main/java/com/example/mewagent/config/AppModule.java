@@ -9,6 +9,8 @@ import com.example.mewagent.repositories.ITaskRepository;
 import com.example.mewagent.repositories.SQLiteTaskRepository;
 import com.example.mewagent.repositories.WebsitePatternRepository;
 import com.example.mewagent.repositories.IWebsitePatternRepository;
+import com.example.mewagent.service.interfaces.ILLMService;
+import com.example.mewagent.service.LLMService;
 
 public class AppModule extends AbstractModule {
     @Override
@@ -17,6 +19,7 @@ public class AppModule extends AbstractModule {
 
         bind(ITaskExecutionService.class).to(TaskExecutionService.class);
         bind(ITaskRepository.class).to(SQLiteTaskRepository.class);
-        bind(IWebsitePatternRepository.class).to(WebsitePatternRepository.class);
+        // bind(IWebsitePatternRepository.class).to(WebsitePatternRepository.class);
+        bind(ILLMService.class).to(LLMService.class);
     }
 }
