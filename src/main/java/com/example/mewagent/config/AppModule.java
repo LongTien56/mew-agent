@@ -5,10 +5,10 @@ import com.example.mewagent.service.TaskExecutionService;
 import com.example.mewagent.service.interfaces.IAgentService;
 import com.example.mewagent.service.interfaces.ITaskExecutionService;
 import com.google.inject.AbstractModule;
-import com.example.mewagent.repositories.ITaskRepository;
-import com.example.mewagent.repositories.SQLiteTaskRepository;
-import com.example.mewagent.repositories.WebsitePatternRepository;
-import com.example.mewagent.repositories.IWebsitePatternRepository;
+import com.example.mewagent.repository.ITaskRepository;
+import com.example.mewagent.repository.SQLiteTaskRepository;
+import com.example.mewagent.repository.WebsitePatternRepository;
+import com.example.mewagent.repository.IWebsitePatternRepository;
 import com.example.mewagent.service.interfaces.ILLMService;
 import com.example.mewagent.service.LLMService;
 

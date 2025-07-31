@@ -1,27 +1,28 @@
 package com.example.mewagent.model;
 
-import java.time.LocalDateTime;
-import java.util.Map;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
-import java.util.UUID;
-import lombok.AllArgsContructor;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsContructor;
+import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+import java.util.Map;
+import java.util.UUID;
 
 @Data
 @Builder
-@AllArgsContructor
-@NoArgsContructor
-@DatabaseTable(tableName="tasks")
+@NoArgsConstructor
+@AllArgsConstructor
+@DatabaseTable(tableName = "tasks")
 public class Task {
+
     public enum TaskStatus {
-        PENDING, RUNNING, COMPLETED, FAILED, CENCELLED;
+        PENDING, RUNNING, COMPLETED, FAILED, CANCELLED // Corrected typo
     }
 
-    @DatabaseField(id=true)
+    @DatabaseField(id = true)
     private String id;
 
     @DatabaseField
@@ -34,9 +35,10 @@ public class Task {
     private String targetWebsite;
 
     @DatabaseField
-    private TaskStatus status;    
+    private TaskStatus status;
 
-    @DatabaseField(persisted = false) 
+    // This field will not be saved to the database, which is correct for transient data
+    @DatabaseField(persisted = false)
     private Map<String, Object> parameters;
 
     @DatabaseField

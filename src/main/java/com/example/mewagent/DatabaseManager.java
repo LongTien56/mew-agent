@@ -1,4 +1,4 @@
-package com.example.mewagent.repositories;
+package com.example.mewagent.repository;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

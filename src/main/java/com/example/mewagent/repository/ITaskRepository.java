@@ -1,7 +1,7 @@
 package com.example.mewagent.repository;
 
-import com.example.mewagent.model.Task;
-import java.util.Task;
+import com.example.mewagent.model.Task; 
+import java.util.List;
 import java.util.Optional;
 
 public interface ITaskRepository {

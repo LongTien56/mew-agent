@@ -1,4 +1,4 @@
-package com.example.mewagent.repositories;
+package com.example.mewagent.repository;
 
 import com.example.mewagent.model.WebsitePattern;
 import java.util.Optinal;

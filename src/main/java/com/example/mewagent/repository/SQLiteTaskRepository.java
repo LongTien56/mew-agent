@@ -1,6 +1,6 @@
-package com.example.mewagent.repositories;
+package com.example.mewagent.repository;
 
-import com.example.mewagent.model.orm.Task;
+import com.example.mewagent.model.Task;
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.dao.DaoManager;
 import com.j256.ormlite.jdbc.JdbcConnectionSource;

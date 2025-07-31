@@ -2,7 +2,7 @@ package com.example.mewagent.service;
 
 import com.example.mewagent.service.interfaces.IAgentService;
 import com.example.mewagent.service.interfaces.ITaskExecutionService;
-import com.example.mewagent.repositories.ITaskRepository;
+import com.example.mewagent.repository.ITaskRepository;
 import com.google.inject.Inject;
 
 import java.util.HashMap;
@@ -57,7 +57,7 @@ public class AgentService implements IAgentService {
             case "status":
                 return getStatus();
             default:
-                return "Unknown command. Type 'help' for available commands.";
+                return "Unknown comma nd. Type 'help' for available commands.";
         }
     }
 
